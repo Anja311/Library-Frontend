@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<div class="roles-container">
+    <div *ngFor="let role of roles" class="role-card">
+        <div class="role-header">
+            <h3>{{ role.name }}</h3>            
+        </div>
+        <div class="permissions-list">
+            <ul>
+                <li *ngFor="let permission of role.permissions" class="permission-item">
+                    {{ permission.name }}
+                    <i class="fas fa-trash" (click)="delete(role.idRole, permission.idPermission)"></i>
+                </li>
+            </ul>
+        </div>
+        <div class="add-button-container">
+          <button class="add-button" (click)="showPermissionsToAdd(role.idRole)">+</button>
+      </div> 
+        <div *ngIf="role.idRole === selectedRoleId" class="select-permission">
+    <select (change)="addPermission($event)">
+        <option value="" disabled selected hidden>Izaberi permisiju</option>
+        <option *ngFor="let permission of availablePermissions" [value]="permission.idPermission">{{ permission.name }}</option>
+    </select>
+    <button class="cancel-button" (click)="cancelAddPermission()">X</button>
+</div>
+    </div>
+</div>

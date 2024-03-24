@@ -1,0 +1,20 @@
+<!--<input type="text" [(ngModel)]="searchTerm" (input)="performSearch()" placeholder="Unesite pojam za pretragu" class="search-input" /> -->
+<br>
+<br>
+<ul>
+  <li *ngFor="let book of books">
+    <a [routerLink]="['/book', book.idBook]" (click)="onSelectBook(book)">
+      <img src="{{picturePath}}{{book.pictureName}}" alt="{{book.title}}">
+    </a>
+      <div class="content">
+        <div class="title">
+          {{book.title}}
+        </div>
+        <div class="author">
+          {{book.author.name}}
+        </div>
+      </div>
+    <!--</a> -->
+  </li>
+</ul>
+<!--<pagination-controls (pageChange)="p = $event"></pagination-controls> -->

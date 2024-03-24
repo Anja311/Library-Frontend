@@ -1,0 +1,85 @@
+.table-container {
+    margin: 50px auto;
+    width: 90%; 
+    overflow-x: auto; 
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    color: #333;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  tr:hover {
+    background-color: #f5f5f5;
+  }
+  
+  th, td {
+    padding: 8px; 
+    text-align: left; 
+  }
+  
+  .username-col {
+    width: 100px; 
+  }
+  
+  .name-col {
+    width: 100px; 
+  }
+  
+  .surname-col {
+    width: 100px; 
+  }
+  
+  .birthdate-col {
+    width: 120px; 
+  }
+  
+  .email-col {
+    width: 200px;
+  }
+
+  .deleted-col {
+    width: 80px;
+  }
+
+  button {
+    padding: 5px 20px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  .button-container button {
+    margin-bottom: 5px; 
+}

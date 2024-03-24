@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<table class="book-table">
+    <thead>
+      <tr>
+        <th>Redni broj</th>
+        <th>Naslov</th>
+        <th>Autor</th>
+        <th>Žanr</th>
+        <th>Dostupnost</th>
+        <th>Datum posuđivanja</th>
+        <th>Vratiti do:</th>
+        <th>Vraćena</th>
+        <th>Datum vraćanja</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let borrowing of borrowings; let i = index">
+        <td>{{ i + 1 }}.</td>
+        <td>{{ borrowing.book.title }}</td>
+        <td>{{ borrowing.book.author.name }}</td>
+        <td>{{ borrowing.book.genre }}</td>
+        <td>
+          <ng-container *ngIf="borrowing.book.isAvailable; else notAvailable">
+            <i class="fas fa-check"></i>
+          </ng-container>
+          <ng-template #notAvailable>
+            <i class="fas fa-times"></i> 
+          </ng-template>
+        </td>
+        <td>{{ borrowing.date | date }}</td>
+        <td>{{ borrowing.returnTo | date }}</td>
+        <td>
+          <ng-container *ngIf="borrowing.bookReturned; else notReturned">
+            <i class="fas fa-check"></i> 
+          </ng-container>
+          <ng-template #notReturned>
+            <i class="fas fa-times"></i> 
+          </ng-template>
+        </td>
+        <td>{{ borrowing.dateReturned | date }}</td>
+      </tr>
+    </tbody>
+  </table>
+  

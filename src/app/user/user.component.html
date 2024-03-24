@@ -1,0 +1,35 @@
+<br>
+<button (click)="addUser()">+</button>
+<br><br>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"><table class="table">
+    <thead>
+      <tr>
+        <th>Korisničko ime</th>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Datum rođenja</th>
+        <th>Email</th>
+        <th>Obrisan</th>
+        <th>Uloga</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.username }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.surname }}</td>
+        <td>{{ user.dateOfBirth }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+            <i class="fas fa-{{user?.isDeleted ? 'check-circle text-success' : 'times-circle text-danger'}}"></i>
+          </td>
+        <td>{{ user.role.name }}</td>
+        <td>
+            <button *ngIf="!user.isDeleted" (click)="deleteUser(user.idUser)">
+                <i class="fas fa-trash"></i> 
+              </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

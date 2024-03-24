@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<table class="book-table">
+    <thead>
+      <tr>
+        <th>Redni broj</th>
+        <th>Naslov</th>
+        <th>Autor</th>
+        <th>Žanr</th>
+        <th>Datum rezervacije</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reservation of reservations; let i = index">
+        <td>{{ i + 1 }}.</td>
+        <td>{{ reservation.book.title }}</td>
+        <td>{{ reservation.book.author.name }}</td>
+        <td>{{ reservation.book.genre }}</td>
+        <td>{{ reservation.date | date }}</td>
+      </tr>
+    </tbody>
+  </table>
+  

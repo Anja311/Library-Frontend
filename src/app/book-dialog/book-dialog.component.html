@@ -1,0 +1,22 @@
+<div id="overlay"></div>
+<div id="myDialog" class="dialog-container">
+  <h2 class="dialog-title">Iznajmi knjigu</h2>
+  <div class="dialog-content">
+    <div class="form-group">
+      <input class="form-control" type="text" id="username" name = "username" [(ngModel)]="username" placeholder="Unesite korisničko ime korisnika" required>
+    </div>
+    <div class="form-group">
+      <input class="form-control" type="text" id="bibliotekarId" name = "bibliotekarId" [(ngModel)]="bibliotekarId" placeholder="Unesite id bibliotekara" required>
+    </div>
+  </div>
+  <div *ngIf="successMessage" class="success-message">
+    {{ successMessage }}
+  </div>
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+  <div class="dialog-actions">
+    <button id="addButton" class="btn btn-primary" (click)="onAdd()">DODAJ</button>
+    <button id="closeButton" class="btn btn-secondary">Zatvori</button>
+  </div>
+</div>

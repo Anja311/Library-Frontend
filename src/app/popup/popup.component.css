@@ -1,0 +1,25 @@
+.popup-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .close-button {
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .close-button:hover {
+    background-color: #bdbdbd;
+  }
+
+  .popup-container h1{
+    font-size: 12px;
+  }
+  

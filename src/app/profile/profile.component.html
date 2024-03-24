@@ -1,0 +1,15 @@
+
+    <div class="user-details">
+      <p><strong>Korisničko ime:</strong> {{ user.username }}</p>
+      <p><strong>Ime:</strong> {{ user.name }}</p>
+      <p><strong>Prezime:</strong> {{ user.surname }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Datum rođenja:</strong> {{ user.dateOfBirth | date }}</p>
+    </div>
+    <div class="sidebar">
+      <button class="btn edit-btn" (click)="editProfile()">Izmijeni podatke</button>
+      <button class="btn edit-btn" routerLink="/myBooks" [queryParams]="{ userId: user.idUser}">Moje knjige</button>
+      <button class="btn edit-btn" routerLink="/myReservations" [queryParams]="{ userId: user.idUser}">Rezervacije</button>
+      <button class="btn logout-btn" (click)="logout()">Odjavi se</button>
+      <button class="btn delete-btn" (click)="deleteProfile()">Obriši profil</button>   
+    </div>

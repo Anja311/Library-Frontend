@@ -1,0 +1,27 @@
+<br>
+<form (ngSubmit)="onSubmit(authorForm)" #authorForm="ngForm">
+    <div class="form-group">
+      <label for="name">Ime autora:</label>
+      <input type="text" class="form-control" id="name" name="name" [(ngModel)]="author.name" required>
+    </div>
+    <div class="form-group">
+      <label for="dateOfBirth">Datum rođenja:</label>
+      <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" [(ngModel)]="author.dateOfBirth" required>
+    </div>
+    <div class="form-group">
+      <label for="placeOfBirth">Mjesto rođenja:</label>
+      <input type="text" class="form-control" id="placeOfBirth" name="placeOfBirth" [(ngModel)]="author.placeOfBirth" required>
+    </div>
+    <div class="form-group">
+      <label for="description">Opis:</label>
+      <textarea class="form-control" id="description" name="description" [(ngModel)]="author.description" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!authorForm.valid">Dodaj autora</button>
+    <div *ngIf="successMessage" class="success-message">
+        {{ successMessage }}
+      </div>
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+  </form>
+  

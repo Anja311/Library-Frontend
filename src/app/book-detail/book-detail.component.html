@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<br>
+<div class="book-detail">
+    <div class="book-image">
+        <img src="{{picturePath}}{{book?.pictureName}}" alt="{{book?.title}}">
+    </div>
+    <div class="book-info">
+        <h2>{{book?.title}}</h2>
+        <p><strong>Autor:</strong> {{book?.author?.name}}</p>
+        <p>{{book?.author?.description}}</p>
+        <p><strong>Datum rođenja:</strong> {{book?.author?.dateOfBirth | date}}</p>
+        <p><strong>Žanr:</strong> {{book?.genre}}</p>
+        <p><strong>Datum objave knjige:</strong> {{book?.publicationDate | date}}</p>
+        <p><strong>Opis:</strong> {{book?.description}}</p>
+        <p><strong>Dostupnost:</strong> 
+            <i class="fas fa-{{book?.isAvailable ? 'check-circle text-success' : 'times-circle text-danger'}}"></i>
+        </p>
+    </div>
+    <div class="button-container">
+        <button class="btn btn-primary" (click)="editBook()">Izmijeni knjigu</button>
+        <button class="btn btn-danger" (click)="deleteBook()">Ukloni knjigu</button>
+        <button class="btn btn-danger" (click)="reserveBook()">Rezerviši knjigu</button>
+        <button class="btn btn-danger" (click)="borrowBook()">Iznajmi knjigu</button>
+    </div>
+    <div *ngIf="successMessage" class="success-message">
+        {{ successMessage }}
+    </div>
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+</div>

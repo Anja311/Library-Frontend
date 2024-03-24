@@ -1,0 +1,78 @@
+.book-detail {
+  display: flex;
+  align-items: flex-start; /* Postavlja elemente na vrh kontejnera */
+}
+
+.book-image {
+  flex: 0 0 auto;
+  margin-right: 30px;
+}
+
+.book-image img {
+  max-width: 200px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.book-image img:hover {
+  transform: scale(1.05);
+}
+
+.book-info {
+  flex: 1 1 auto;
+  margin-top: -10px;
+}
+
+.book-info p {
+  margin-bottom: 8px;
+  color: #555;
+  word-wrap: break-word; /* Omogućava da se tekst prelomi na više redova */
+}
+
+.book-info strong {
+  font-weight: bold;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Poravnava dugmad sa desnom ivicom */
+  margin-left: 20px; /* Razmak između informacija i dugmadi */
+}
+
+.button-container button {
+  margin-top: 10px;
+  padding: 10px 20px; /* Smanjivanje paddinga */
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px; /* Smanjivanje fonta */
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px; /* Razmak između dugmadi */
+  margin-right: 20px;
+}
+
+.button-container button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.button-container button:hover {
+  background-color: #0056b3;
+}
+
+.availability i {
+  font-size: 24px;
+  margin-right: 5px;
+}
+
+.text-success {
+  color: #4caf50;
+}
+
+.text-danger {
+  color: #f44336;
+}

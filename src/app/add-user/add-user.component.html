@@ -1,0 +1,52 @@
+  <br>
+  <form #userForm="ngForm" (ngSubmit)="dodajKorisnika()" class="form-container">
+    <div class="form-group">
+      <label for="ime">Ime:</label>
+      <input type="text" id="ime" name="ime" [(ngModel)]="userRequest.name" required>
+    </div>
+  
+    <div class="form-group">
+      <label for="prezime">Prezime:</label>
+      <input type="text" id="prezime" name="prezime" [(ngModel)]="userRequest.surname" required>
+    </div>
+  
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" [(ngModel)]="userRequest.email" required>
+    </div>
+  
+    <div class="form-group">
+      <label for="datumRodjenja">Datum rođenja:</label>
+      <input type="date" id="datumRodjenja" name="datumRodjenja" [(ngModel)]="userRequest.dateOfBirth" required>
+    </div>
+  
+    <div class="form-group">
+      <label for="username">Korisničko ime:</label>
+      <input type="text" id="username" name="username" [(ngModel)]="userRequest.username" required>
+    </div>
+  
+    <div class="form-group">
+      <label for="lozinka">Lozinka:</label>
+      <input type="password" id="lozinka" name="lozinka" [(ngModel)]="userRequest.password" required minlength="6">
+      <div *ngIf="userRequest.password.length < 6" class="error-message">
+        Lozinka mora sadržavati najmanje 6 karaktera.
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="rola">Uloga:</label>
+      <select id="rola" name="rola" [(ngModel)]="idSelektovaneRole" required>
+        <option *ngFor="let role of roles" [value]="role.idRole">{{ role.name }}</option>
+      </select>
+    </div>
+  
+    <button type="submit" [disabled]="!userForm.valid">Dodaj korisnika</button>
+  
+    <div *ngIf="successMessage" class="success-message">
+      {{ successMessage }}
+    </div>
+    
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+  </form>
