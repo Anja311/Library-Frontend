@@ -16,21 +16,22 @@ import { ProfileComponent } from './profile/profile.component';
 import { MyBooksComponent } from './my-books/my-books.component';
 import { MyReservationsComponent } from './my-reservations/my-reservations.component';
 import { ReturnBookComponent } from './return-book/return-book.component';
+import { AuthGuardGuard } from './auth-guard.guard';
 
 const routes: Routes = [
   {path:'', component: LoginComponent},
   {path: 'book/:id', component: BookDetailComponent},
-  {path: 'addBook', component: AddBookComponent },
-  {path: 'addAuthor', component : AddAuthorComponent},
-  {path: 'user', component: UserComponent},
-  {path: 'addUser', component: AddUserComponent},
-  {path: 'permissions', component : PermissionsComponent},
+  {path: 'addBook', data: { claim: "BookWrite" }, canActivate: [AuthGuardGuard], component: AddBookComponent },
+  {path: 'addAuthor', data: { claim: "AuthorWrite" }, canActivate: [AuthGuardGuard], component : AddAuthorComponent},
+  {path: 'user', data: { claim: "UserRead" }, canActivate: [AuthGuardGuard], component: UserComponent},
+  {path: 'addUser', data: { claim: "UserWrite" }, canActivate: [AuthGuardGuard], component: AddUserComponent},
+  {path: 'permissions', data: { claim: "PermissionRead" }, canActivate: [AuthGuardGuard], component : PermissionsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'myProfile', component: ProfileComponent},
   {path: 'home', component : HomeComponent},
   {path: 'myBooks', component: MyBooksComponent},
   {path: 'myReservations', component : MyReservationsComponent},
-  {path: 'returnBook', component : ReturnBookComponent}
+  {path: 'returnBook', data: { claim: "BookReturn" }, canActivate: [AuthGuardGuard], component : ReturnBookComponent}
 ];
 
 @NgModule({

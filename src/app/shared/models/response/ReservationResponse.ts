@@ -6,4 +6,5 @@ export class ReservationResponse{
     idBook!: number;
     date!: Date;
     book!: Book;
+    isBorrowed!: boolean
 }

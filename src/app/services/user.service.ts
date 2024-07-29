@@ -33,6 +33,7 @@ export class UserService {
   }
 
   findByUsername(username: string): Observable<User> {
+    this.headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.localStorage.getFromLocalStorage("token"));
     const url = `${this.baseUrl}/${username}`;
     return this.httpClient.get<User>(url, {headers: this.headers});
   }

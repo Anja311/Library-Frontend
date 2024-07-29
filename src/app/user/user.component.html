@@ -1,5 +1,5 @@
 <br>
-<button (click)="addUser()">+</button>
+<button (click)="addUser()" *appHasClaim="'UserWrite'">+</button>
 <br><br>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"><table class="table">
     <thead>
@@ -25,7 +25,7 @@
             <i class="fas fa-{{user?.isDeleted ? 'check-circle text-success' : 'times-circle text-danger'}}"></i>
           </td>
         <td>{{ user.role.name }}</td>
-        <td>
+        <td *appHasClaim="'UserDelete'">
             <button *ngIf="!user.isDeleted" (click)="deleteUser(user.idUser)">
                 <i class="fas fa-trash"></i> 
               </button>

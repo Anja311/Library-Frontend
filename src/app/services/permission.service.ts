@@ -25,7 +25,7 @@ export class PermissionService {
 
   addPermissionToRole(roleId: number, permissionId : number) : Observable<Permission>{
     const url = `${this.baseUrl}?roleId=${roleId}&permissionId=${permissionId}`;
-    return this.httpClient.post<Permission>(url, {headers: this.headers})
+    return this.httpClient.post<Permission>(url, null, {headers: this.headers})
   }
 
   deletePermissionToRole(roleId: number, permissionId: number): Observable<void>{

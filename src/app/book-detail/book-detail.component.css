@@ -1,6 +1,6 @@
 .book-detail {
   display: flex;
-  align-items: flex-start; /* Postavlja elemente na vrh kontejnera */
+  align-items: flex-start; 
 }
 
 .book-image {
@@ -27,7 +27,7 @@
 .book-info p {
   margin-bottom: 8px;
   color: #555;
-  word-wrap: break-word; /* Omogućava da se tekst prelomi na više redova */
+  word-wrap: break-word; 
 }
 
 .book-info strong {
@@ -37,21 +37,21 @@
 .button-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-end; /* Poravnava dugmad sa desnom ivicom */
-  margin-left: 20px; /* Razmak između informacija i dugmadi */
+  align-items: flex-end;
+  margin-left: 20px;
 }
 
 .button-container button {
   margin-top: 10px;
-  padding: 10px 20px; /* Smanjivanje paddinga */
+  padding: 10px 20px;
   background-color: #007bff;
   color: #ffffff;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 14px; /* Smanjivanje fonta */
+  font-size: 14px;
   transition: background-color 0.3s ease;
-  margin-bottom: 10px; /* Razmak između dugmadi */
+  margin-bottom: 10px; 
   margin-right: 20px;
 }
 

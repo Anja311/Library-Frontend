@@ -5,6 +5,7 @@ import { User } from '../shared/models/User';
 import { BorrowingBook} from '../shared/models/BorrowingBook';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BorrowService } from '../services/borrow.service';
+import { LocalStorageService } from '../services/local-storage.service';
 
 @Component({
   selector: 'app-book-dialog',
@@ -19,9 +20,13 @@ export class BookDialogComponent implements OnInit{
   bibliotekarId : number | null = null;
   successMessage: string = '';
   errorMessage: string = '';
+  bibliotekar: User | null = null;
 
   constructor(public dialogRef: MatDialogRef<BookDialogComponent>, private userService: UserService,
-     @Inject(MAT_DIALOG_DATA) public data: any, private borrowService: BorrowService) {}
+     @Inject(MAT_DIALOG_DATA) public data: any, private borrowService: BorrowService, private lsService : LocalStorageService) {
+
+      this.bibliotekar = lsService.getFromLocalStorage("user");
+     }
 
   ngOnInit(): void {
     console.log('Received book:', this.data.book);
@@ -42,8 +47,9 @@ export class BookDialogComponent implements OnInit{
       const response: any = await this.userService.findByUsername(this.username).toPromise();
       this.user = response;
 
-      if (this.user != null && this.bibliotekarId != null){
-        const borrowBook = new BorrowingBook(this.data.book.idBook, this.user.idUser, this.bibliotekarId);
+      if (this.user != null && this.bibliotekar?.idUser != null){
+        console.log("id biblioketar: " + this.bibliotekar?.idUser);
+        const borrowBook = new BorrowingBook(this.data.book.idBook, this.user.idUser, this.bibliotekar?.idUser!);
         this.borrowService.create(borrowBook).subscribe(
           response => {
             this.successMessage = 'Dodato!';
@@ -56,7 +62,6 @@ export class BookDialogComponent implements OnInit{
             console.error('Došlo je do greške prilikom dodavanja knjige:', error);
           }
         );
-
 
       }
 

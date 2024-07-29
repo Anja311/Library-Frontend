@@ -1,70 +1,76 @@
+body {
+  margin: 0;
+  padding: 20px; /* Dodaje padding cijelom sadržaju */
+  box-sizing: border-box;
+}
+
 .container {
-    margin: 20px auto;
-    max-width: 800px; 
-  }
-  
-  .element {
-    margin: 20px; 
-    padding: 20px;
-    background-color: #f0f0f0; 
-    border: 1px solid #ccc; 
-    border-radius: 5px; 
-  }
-  
-  .form-group {
-    margin-bottom: 30px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 10px;
-    font-weight: bold;
-  }
-  
-  input[type="text"],
-  input[type="date"],
-  input[type="number"],
-  textarea,
-  select { 
-    width: calc(100% - 30px); 
-    padding: 15px;
-    border: 1px solid #e0e0e0; 
-    border-radius: 6px;
-    box-sizing: border-box;
-    font-size: 16px;
-  }
-  
-  textarea {
-    resize: vertical;
-  }
-  
-  input[type="file"] {
-    padding: 15px;
-  }
-  
-  button {
-    padding: 15px 30px;
-    background-color: #007bff;
-    color: #ffffff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  .error-message {
-    color: #dc3545;
-    font-size: 14px;
-    margin-top: 5px;
-  }
-  
+  margin: 40px auto;
+  max-width: 700px;
+  padding: 0 20px; /* Dodaje padding unutar kontejnera za lijevi i desni razmak */
+}
+
+.element {
+  margin: 20px;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-group {
+  margin-bottom: 30px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"],
+textarea,
+select {
+  width: calc(100% - 30px);
+  padding: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input[type="file"] {
+  padding: 15px;
+}
+
+button {
+  padding: 15px 30px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: 5px;
+}

@@ -8,6 +8,7 @@ import { ReservationService } from '../services/reservation.service';
 import { ReservationRequest } from '../shared/models/request/ReservationRequest';
 import { User } from '../shared/models/User';
 import { PopupComponent } from '../popup/popup.component';
+import { ReservationResponse } from '../shared/models/response/ReservationResponse';
 
 @Component({
   selector: 'app-book-detail',
@@ -22,9 +23,25 @@ export class BookDetailComponent implements OnInit{
   picturePath: string = "http://localhost:8080/";
   book: Book | null = null;
   user: User | null = null;
+  userHasReservation: boolean = false;
+  reservations: ReservationResponse[] = [];
+  reservation: ReservationResponse | undefined = undefined;
+
   constructor(private bookService: BookService, private lsService: LocalStorageService, private dialog : MatDialog,
     private reservationService : ReservationService) {
     this.user = lsService.getFromLocalStorage("user");
+
+    reservationService.getByUserId(this.user?.idUser!).subscribe(
+      response =>{
+        this.reservations = response;
+        this.userHasReservation = this.reservations.some(reservation => reservation.book.idBook === this.book?.idBook && !reservation.isBorrowed)
+        
+        this.reservation = this.reservations.find(reservation => reservation.book.idBook === this.book?.idBook && !reservation.isBorrowed)
+      },
+      error =>{
+        console.log("Greska prilikom ucitavanja podataka.");
+      }
+    )
    
   }
   ngOnInit(): void {
@@ -43,6 +60,19 @@ export class BookDetailComponent implements OnInit{
         }
       );
     } 
+  }
+
+  deleteReservation() {
+    this.reservationService.deleteReservation(this.reservation?.idReservation!).subscribe(
+      response => {
+        this.userHasReservation = false;
+        this.openPopup("Rezervacija je uspješno otkazana!");
+      },
+      error =>{
+        console.log("Doslo je do greske prilikom brisanja rezervacije!");
+        this.openPopup("Greška prilikom otkazivanja rezervacije!!");
+      }
+    );
   }
     
   editBook() {
@@ -71,6 +101,11 @@ export class BookDetailComponent implements OnInit{
 
   borrowBook() {
     this.openDialog();
+  
+    if (this.book){
+      this.book.isAvailable = false;
+      this.lsService.addToLocalStorage("book", this.book);
+    }
   }  
 
   openDialog(): void {

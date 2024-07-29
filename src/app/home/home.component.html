@@ -1,20 +1,21 @@
-<!--<input type="text" [(ngModel)]="searchTerm" (input)="performSearch()" placeholder="Unesite pojam za pretragu" class="search-input" /> -->
-<br>
+<div class="button-container" *ngIf="userLoaded || userLoading">
+  <button class="btn btn-primary" routerLink="/addBook" *appHasClaim="'BookWrite'">Dodaj novu knjigu</button>
+  <button class="btn btn-primary" routerLink="/returnBook" *appHasClaim="'BookReturn'">Vrati knjigu</button>
+  <button class="btn btn-primary" routerLink="/addAuthor" *appHasClaim="'AuthorWrite'">Dodaj novog autora</button>
+</div>
 <br>
 <ul>
   <li *ngFor="let book of books">
     <a [routerLink]="['/book', book.idBook]" (click)="onSelectBook(book)">
       <img src="{{picturePath}}{{book.pictureName}}" alt="{{book.title}}">
     </a>
-      <div class="content">
-        <div class="title">
-          {{book.title}}
-        </div>
-        <div class="author">
-          {{book.author.name}}
-        </div>
+    <div class="content">
+      <div class="title">
+        {{book.title}}
       </div>
-    <!--</a> -->
+      <div class="author">
+        {{book.author.name}}
+      </div>
+    </div>
   </li>
 </ul>
-<!--<pagination-controls (pageChange)="p = $event"></pagination-controls> -->

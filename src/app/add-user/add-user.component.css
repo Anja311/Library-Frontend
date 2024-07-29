@@ -21,7 +21,7 @@
   input[type="date"],
   input[type="password"],
   select {
-    width: calc(100% - 20px); /* uzmi u obzir padding */
+    width: calc(100% - 20px);
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;

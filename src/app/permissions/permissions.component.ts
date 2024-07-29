@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { RoleService } from '../services/role.service';
 import { Role } from '../shared/models/Role';
 import { PermissionService } from '../services/permission.service';
+import { MatDialog } from '@angular/material/dialog';
+import { PopupComponent } from '../popup/popup.component';
 
 @Component({
   selector: 'app-permissions',
@@ -13,9 +15,9 @@ export class PermissionsComponent {
   roles: Role[] = [];
   availablePermissions: any[] = [];
   selectedRoleId: number = -1;
-  selectedPermissions: string[] = []; // Dodali smo listu selektovanih permisija
+  selectedPermissions: string[] = [];
   
-  constructor(private roleService: RoleService, private permissionService: PermissionService){
+  constructor(private roleService: RoleService, private permissionService: PermissionService, private dialog : MatDialog){
     this.loadRoles();
   }
 
@@ -33,6 +35,7 @@ export class PermissionsComponent {
     console.log('Brisanje permisije:', permissionId, 'za rolu:', roleId);
     this.permissionService.deletePermissionToRole(roleId, permissionId).subscribe(
       response => {
+        this.openPopup("Permisija je uklonjena!");
         this.loadRoles();
         this.showPermissionsToAdd(roleId);
       },
@@ -55,6 +58,7 @@ export class PermissionsComponent {
     this.permissionService.addPermissionToRole(roleId, permissionId).subscribe(
       response => {
         console.log('Permisija je uspjesno dodata:', response);
+        this.openPopup("Permisija je dodata!");
         this.loadRoles();
         this.showPermissionsToAdd(roleId);
       },
@@ -77,5 +81,16 @@ export class PermissionsComponent {
     } catch (error) {
       console.error('Došlo je do greške prilikom dohvaćanja podataka:', error);
     }
+  }
+
+  openPopup(message: string): void {
+    const dialogRef = this.dialog.open(PopupComponent, {
+      width: '250px',
+      data: { message: message }
+    });
+
+    setTimeout(() => {
+      dialogRef.close();
+    }, 3000);
   }
 }

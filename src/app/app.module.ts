@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +21,15 @@ import { MyBooksComponent } from './my-books/my-books.component';
 import { PopupComponent } from './popup/popup.component';
 import { MyReservationsComponent } from './my-reservations/my-reservations.component';
 import { ReturnBookComponent } from './return-book/return-book.component';
+import { HasClaimDirective } from './has-claim.directive';
+import { LocalStorageService } from './services/local-storage.service';
+import { SecurityService } from './services/security.service';
+
+export function initializeApp(localStorageService: LocalStorageService) {
+  return (): Promise<void> => {
+    return localStorageService.init();
+  };
+}
 
 @NgModule({
   declarations: [
@@ -39,7 +48,8 @@ import { ReturnBookComponent } from './return-book/return-book.component';
     MyBooksComponent,
     PopupComponent,
     MyReservationsComponent,
-    ReturnBookComponent
+    ReturnBookComponent,
+    HasClaimDirective
   ],
   imports: [
     BrowserModule,
@@ -51,7 +61,15 @@ import { ReturnBookComponent } from './return-book/return-book.component';
   ],
   providers: [
     provideClientHydration(),
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    LocalStorageService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeApp,
+      deps: [LocalStorageService],
+      multi: true
+    },
+    SecurityService
   ],
   bootstrap: [AppComponent]
 })

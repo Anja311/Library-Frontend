@@ -17,10 +17,17 @@
         </p>
     </div>
     <div class="button-container">
-        <button class="btn btn-primary" (click)="editBook()">Izmijeni knjigu</button>
-        <button class="btn btn-danger" (click)="deleteBook()">Ukloni knjigu</button>
-        <button class="btn btn-danger" (click)="reserveBook()">Rezerviši knjigu</button>
-        <button class="btn btn-danger" (click)="borrowBook()">Iznajmi knjigu</button>
+        <button class="btn btn-primary" (click)="editBook()" *appHasClaim="'BookUpdate'">Izmijeni knjigu</button>
+        <button class="btn btn-danger" (click)="deleteBook()" *appHasClaim="'BookDelete'">Ukloni knjigu</button>
+        <div class = "reservation" *ngIf="!userHasReservation">
+            <button class="btn btn-danger" (click)="reserveBook()" *appHasClaim="'BookReserve'">Rezerviši knjigu</button>
+        </div>
+        <div class = "reservation" *ngIf="userHasReservation">
+            <button class="btn btn-danger" (click)="deleteReservation()" *appHasClaim="'BookReserve'">Otkazi rezervaciju</button>
+        </div>
+        <div *ngIf="book?.isAvailable">
+        <button class="btn btn-danger" (click)="borrowBook()" *appHasClaim="'BookRent'">Iznajmi knjigu</button>
+        </div>
     </div>
     <div *ngIf="successMessage" class="success-message">
         {{ successMessage }}

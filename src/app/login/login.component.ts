@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-
+  
   errorMessage: string = '';
   username: string | null = null;
   password: string | null = null;
@@ -22,12 +22,15 @@ export class LoginComponent {
 
   constructor(private loginService: LoginService, private userService: UserService, private localStorage: LocalStorageService,
     private router: Router){
-
+      if (this.localStorage.getFromLocalStorage("user")){
+        this.router.navigate(['/home']);
+      }
   }
 
   login(){
     console.log("user " +  this.username);
     console.log("password " +  this.password);
+
 
     if (this.username != null && this.password != null){
     const request = new LoginRequest(this.username, this.password);
@@ -35,13 +38,17 @@ export class LoginComponent {
     this.loginService.login(request).subscribe(
       response => {
         this.token = response;
-        console.log('Prijava uspjesna', response);
         this.localStorage.addToLocalStorage("token", this.token);
+        this.localStorage.addToLocalStorage("username", this.username);
+        console.log('Prijava uspjesna', response);
         
         this.userService.findByUsername(this.username!).subscribe(
           response => {
+            console.log("USER: ", response);
             this.user = response;
             this.localStorage.addToLocalStorage("user", this.user);
+
+           // window.location.reload(); 
           }
         )
         this.router.navigate(['/home']);

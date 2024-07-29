@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { RoleService } from '../services/role.service';
 import { UserService } from '../services/user.service';
 import { Role } from '../shared/models/Role';
-import { User } from '../shared/models/User';
 import { UserRequest } from '../shared/models/request/UserRequest';
 
 @Component({

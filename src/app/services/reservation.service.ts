@@ -26,4 +26,16 @@ export class ReservationService {
     const url = `${this.baseUrl}?userId=${userId}`;
     return this.httpClient.get<ReservationResponse[]>(url, {headers : this.headers});
   }
+
+  deleteReservation(reservationId: number) : Observable<void>{
+    const url = `${this.baseUrl}?reservationId=${reservationId}`;
+    console.log(url);
+    console.log(this.headers);
+    return this.httpClient.delete<void>(url, {headers : this.headers});
+  }
+
+  deleteBook(bookId: number): Observable<void> {
+    const url = `${this.baseUrl}?bookId=${bookId}`;
+    return this.httpClient.delete<void>(url, {headers: this.headers});
+  }
 }

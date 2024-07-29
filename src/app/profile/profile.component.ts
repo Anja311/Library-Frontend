@@ -4,6 +4,7 @@ import { LocalStorageService } from '../services/local-storage.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { BorrowService } from '../services/borrow.service';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +15,9 @@ export class ProfileComponent {
 
   user: User = new User();
 
-  constructor(private localStorage: LocalStorageService, private router: Router, private userService: UserService){
+  constructor(private localStorage: LocalStorageService, private router: Router, private userService: UserService,
+    private loginService : LoginService)
+  {
     this.user = localStorage.getFromLocalStorage("user");
   }
 
@@ -32,8 +35,10 @@ export class ProfileComponent {
   }
 
   logout() {
+    this.loginService.logout();
     this.localStorage.addToLocalStorage("user", null);
     this.localStorage.addToLocalStorage("token", null);
+    this.localStorage.addToLocalStorage("username", null);
     this.router.navigate(['/login']);
   }
 

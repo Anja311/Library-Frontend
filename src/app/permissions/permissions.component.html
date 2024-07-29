@@ -9,12 +9,12 @@
             <ul>
                 <li *ngFor="let permission of role.permissions" class="permission-item">
                     {{ permission.name }}
-                    <i class="fas fa-trash" (click)="delete(role.idRole, permission.idPermission)"></i>
+                    <i class="fas fa-trash" *appHasClaim="'PermissionDelete'" (click)="delete(role.idRole, permission.idPermission)"></i>
                 </li>
             </ul>
         </div>
         <div class="add-button-container">
-          <button class="add-button" (click)="showPermissionsToAdd(role.idRole)">+</button>
+          <button class="add-button" (click)="showPermissionsToAdd(role.idRole)" *appHasClaim="'PermissionWrite'">+</button>
       </div> 
         <div *ngIf="role.idRole === selectedRoleId" class="select-permission">
     <select (change)="addPermission($event)">

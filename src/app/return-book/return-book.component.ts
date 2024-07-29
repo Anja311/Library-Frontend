@@ -74,9 +74,13 @@ export class ReturnBookComponent {
   }
 
   openPopup(message: string): void {
-    this.dialog.open(PopupComponent, {
+    const dialogRef = this.dialog.open(PopupComponent, {
       width: '250px',
       data: { message: message }
     });
+
+    setTimeout(() => {
+      dialogRef.close();
+    }, 3000); 
   }
 }
